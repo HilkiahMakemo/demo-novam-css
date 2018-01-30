@@ -40,7 +40,7 @@
     </aside>
   </div>
   @stack('modals')
-<!--   Core JS Files   -->
+
 <script src="{{elixir('dist/js/main.js')}}" type="text/javascript"></script>
 <script src="{{elixir('dist/js/plugins.js')}}" type="text/javascript"></script>
 <script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js" charset="utf-8"></script>
