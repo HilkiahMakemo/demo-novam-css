@@ -35,12 +35,33 @@
                   <a href="/admin/pages/{{$pg->id}}" rel="tooltip" title="Edit Page" class="btn btn-primary btn-simple btn-xs">
                       <i class="material-icons">edit</i>
                   </a>
-                  <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                  <button data-toggle="modal" data-target="#my-page-{{$pg->id}}" class="btn btn-danger btn-simple btn-xs">
                       <i class="material-icons">close</i>
                   </button>
-                  <a href="{{$pg->url}}" rel="tooltip" title="Edit Page" class="btn btn-primary btn-simple btn-xs">
+                  @push('modals')
+                    <div id="my-page-{{$pg->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myPage{{$pg->id}}" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <form class="modal-content" method="post" action="/admin/pages/{{$pg->id}}">
+                          {{csrf_field()}} {{method_field('DELETE')}}
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myPage{{$pg->id}}">{{$pg->title}}</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>Are you sure you want to delete this page completely?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-sm">DELETE</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  @endpush
+                  {{-- <a href="{{$pg->url}}" rel="tooltip" title="Edit Page" class="btn btn-primary btn-simple btn-xs">
                       <i class="material-icons">preview</i>
-                  </a>
+                  </a> --}}
               </td>
           </tr>
         @endforeach

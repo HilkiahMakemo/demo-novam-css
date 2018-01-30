@@ -39,7 +39,7 @@
       </div>
     </aside>
   </div>
-</body>
+  @stack('modals')
 <!--   Core JS Files   -->
 <script src="{{elixir('dist/js/main.js')}}" type="text/javascript"></script>
 <script src="{{elixir('dist/js/plugins.js')}}" type="text/javascript"></script>
@@ -53,4 +53,5 @@ $(document).ready(function() {
 });
 </script>
 @stack('scripts')
+</body>
 </html>
