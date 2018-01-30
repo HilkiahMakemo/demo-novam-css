@@ -3,13 +3,10 @@
   <div class="row">
   <div class="col-md-7">
     <div class="form-group label-floating">
-      @isset($Page->ancestor)
-        <p>{{$Page->ancestor->label}}</p>
-      @else
-        <label class="control-label">Create Under</label>
-      @endisset
+      <label class="control-label">Create Under:</label>
       @php
-      $Label = $Map->ancestor->label ?? $Page->ancestor->label ?? 'Top-most';
+      // dump($Page);
+      $Label = $Map->ancestor->label ?? $Page->label ?? 'Top-most';
       // $selected = function($P, $key) use($Pages){
       //   return isset($Pages) && $P->$key == $Pages->$key? ' selected': '';
       // };
