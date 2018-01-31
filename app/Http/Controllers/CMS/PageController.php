@@ -5,12 +5,13 @@ namespace App\Http\Controllers\CMS;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Objects\SiteTree;
+use App\Objects\SiteBuild;
 use App\Models\CMS\SiteMap;
 use App\Models\CMS\SitePage;
 
 class PageController extends Controller
 {
-  use SiteTree;
+  use SiteTree, SiteBuild;
     /**
      * Display a listing of the resource.
      *
@@ -28,8 +29,12 @@ class PageController extends Controller
           $data['Pages'] = $Pages->where('parent_id', $pid);
         }
         $data['Tree']  = $this->PageTree($data['Pages']);
-        $data['IsDev'] = $IsDev = request()->has('dev');
+        // $data['IsDev'] = $IsDev = request()->has('dev');
+        if($IsDev = request()->has('dev')){
+          $data['Routes'] = $this->CreateRoutes($Pages);
+        }
         $data['PageTypes'] = $this->PageTypes('Site', $IsDev);
+
         $data['BreadCrumbs'] = $this->BreadCrumbs($data['Page']);
         return view('cms.content.pages.index', $data);
     }

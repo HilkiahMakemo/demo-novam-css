@@ -82,7 +82,8 @@ trait SiteTree
     if($Page->ancestor){
       $this->BreadCrumbs($Page->ancestor);
     }
-    return collect($this->breadcrumb);
+    $breadcrumb = collect($this->breadcrumb);
+    return $breadcrumb->reverse();
   }
 
   public function Children($Pages)

@@ -6,9 +6,6 @@
       <label class="control-label">Create Under:</label>
       @php
       $Label = $Map->ancestor->label ?? $Page->label ?? 'Top-most';
-      // $selected = function($P, $key) use($Pages){
-      //   return isset($Pages) && $P->$key == $Pages->$key? ' selected': '';
-      // };
       @endphp
       <select class="form-control" name="parent_id">
         <option value="-1">Top-most</option>

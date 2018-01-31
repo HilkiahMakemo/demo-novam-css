@@ -2,7 +2,7 @@
 @section('content')
 <div class="w100">
   <div class="card-deck">
-    <div class="card col-md-5 card-nav-tabs mx-auto">
+    <div class="card col-md-6 col-lg-4 card-nav-tabs mx-auto">
         <div class="card-header" data-background-color="purple">
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper text-center">

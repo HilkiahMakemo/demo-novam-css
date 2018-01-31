@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -13,6 +14,11 @@ class Controller extends BaseController
 
     protected $allowed = [];
 
+    public function __invoke(Request $request, $action = null)
+    {
+      dump(request()->all());
+    }
+
     public function getAllowed()
     {
       $this_allowed  = $this->allowed;
@@ -21,5 +27,10 @@ class Controller extends BaseController
       $other_allowed = implode(", ", $this_allowed) ?: '';
 
       return $first_allowed.$other_allowed.$last_allowed;
+    }
+
+    public function getPage($url)
+    {
+      dump($url);
     }
 }

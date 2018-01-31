@@ -3,12 +3,12 @@
     <tr>
       <td colspan="10">
         @if ($Page)
-          <span class="pull-left">
+          <span class="float-left">
             @php $count = $Page->children->count() ?? 0; @endphp
             {{$count ?: 'No' }} page{{$count == 1? '': 's'}} here
           </span>
-          <span class="pull-right">
-            @foreach ($BreadCrumbs as $page)
+          <span class="float-right">
+            @foreach (array_reverse($BreadCrumbs->all()) as $page)
               @if ($loop->first)
                 {{ $page->label }}
               @else
@@ -45,7 +45,7 @@
                   <a href="/admin/pages/{{$pg->id}}" rel="tooltip" title="Edit Page" class="btn btn-primary btn-simple btn-xs">
                       <i class="material-icons">edit</i>
                   </a>
-                  <a href="{{$pg->url}}" rel="tooltip" title="View Page" class="btn btn-primary btn-simple btn-xs">
+                  <a href="{{$pg->url}}" rel="tooltip" title="View Page" class="btn btn-primary btn-simple btn-xs" target="_blank">
                       <i class="material-icons">launch</i>
                   </a>
                   <a href="#my-page-{{$pg->id}}" rel="tooltip" title="delete page" data-toggle="modal" class="btn btn-danger btn-simple btn-xs">

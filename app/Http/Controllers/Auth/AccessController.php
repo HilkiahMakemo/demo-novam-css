@@ -17,6 +17,7 @@ class AccessController extends Controller
     public function __invoke(Request $request, $action = null)
     {
         //
+        dump(request()->url(), request()->all());
         if($action != null) $method = 'save'.ucfirst($action);
         return $this->$method($request);
     }

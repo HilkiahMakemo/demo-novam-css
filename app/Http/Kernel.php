@@ -43,6 +43,9 @@ class Kernel extends HttpKernel
         ],
         'cms' => [
             \App\Http\Middleware\CMSAuthorization::class
+        ],
+        'site' => [
+            \App\Http\Middleware\SiteAuthorization::class
         ]
     ];
 
