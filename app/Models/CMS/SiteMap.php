@@ -35,6 +35,16 @@ class SiteMap extends Model
       return $pages;
     }
 
+    public function getUrlAttribute()
+    {
+      $url = $this->link;
+      foreach ($this->children as $child) {
+        $url .= $child->link ?? '';
+      }
+      return $url;
+
+    }
+
     public function getANYAttribute($value)
     {
       dump($value);

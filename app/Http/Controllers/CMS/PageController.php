@@ -89,6 +89,7 @@ class PageController extends Controller
             return empty($p) || $p->version == 'live' || $i == 0;
           });
         }
+        $data['Link']  = $this->Link($data['Page']);
         $data['Pages'] = $Maps;
         $data['PageTypes'] = $this->PageTypes('Site');
 

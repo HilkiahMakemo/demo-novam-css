@@ -4,7 +4,8 @@
       <td colspan="10">
         @if ($Page)
           <span class="pull-left">
-            {{$Page->children->count() ?? 'No' }} page(s) here
+            @php $count = $Page->children->count() ?? 0; @endphp
+            {{$count ?: 'No' }} page{{$count == 1? '': 's'}} here
           </span>
           <span class="pull-right">
             @foreach ($BreadCrumbs as $page)
@@ -44,9 +45,12 @@
                   <a href="/admin/pages/{{$pg->id}}" rel="tooltip" title="Edit Page" class="btn btn-primary btn-simple btn-xs">
                       <i class="material-icons">edit</i>
                   </a>
-                  <button data-toggle="modal" data-target="#my-page-{{$pg->id}}" class="btn btn-danger btn-simple btn-xs">
+                  <a href="{{$pg->url}}" rel="tooltip" title="View Page" class="btn btn-primary btn-simple btn-xs">
+                      <i class="material-icons">launch</i>
+                  </a>
+                  <a href="#my-page-{{$pg->id}}" rel="tooltip" title="delete page" data-toggle="modal" class="btn btn-danger btn-simple btn-xs">
                       <i class="material-icons">close</i>
-                  </button>
+                  </a>
                   @push('modals')
                     <div id="my-page-{{$pg->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myPage{{$pg->id}}" aria-hidden="true">
                       <div class="modal-dialog">
@@ -68,9 +72,6 @@
                       </div>
                     </div>
                   @endpush
-                  {{-- <a href="{{$pg->url}}" rel="tooltip" title="Edit Page" class="btn btn-primary btn-simple btn-xs">
-                      <i class="material-icons">preview</i>
-                  </a> --}}
               </td>
           </tr>
         @endforeach

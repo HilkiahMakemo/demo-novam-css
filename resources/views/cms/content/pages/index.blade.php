@@ -2,9 +2,9 @@
 @section('content')
 <div class="w100">
   <div class="card-deck">
-    <div class="card col-md-5 card-nav-tabs">
+    <div class="card col-md-5 card-nav-tabs mx-auto">
         <div class="card-header" data-background-color="purple">
-            <div class="nav-tabs-navigation">              
+            <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper text-center">
                     <span class="nav-tabs-title">Pages:</span>
                     <ul class="nav nav-tabs ml-auto" data-tabs="tabs">
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-content shrink-hide">
+        <div class="card-content">
             <div class="tab-content">
                 <div class="tab-pane active" id="page-list">
                     @include('cms.content.pages.showlist')
@@ -45,8 +45,8 @@
         </div>
     </div>
   </div>
-  <div class="card col">
+  {{-- <div class="card col">
 
-  </div>
+  </div> --}}
 </div>
 @endsection

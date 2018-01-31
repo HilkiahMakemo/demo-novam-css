@@ -65,12 +65,37 @@ trait SiteTree
 
   }
 
+  public function Link($Page)
+  {
+    $BC = $this->BreadCrumbs($Page);
+    $Link = '';
+    foreach ($BC as $page) {
+      $Link .= "/".trim($page->link,'/\\');
+    }
+    return $Link;
+  }
+
   public function BreadCrumbs($Page)
   {
-    if(empty($Page)) return;
+    if(empty($Page)) return [];
     $this->breadcrumb[] = $Page;
     if($Page->ancestor){
       $this->BreadCrumbs($Page->ancestor);
+    }
+    return collect($this->breadcrumb);
+  }
+
+  public function Children($Pages)
+  {
+    if(empty($Pages)) return [];
+    $this->children[] = $Pages;
+    foreach ($Pages as $page) {
+      if($page->children){
+        $this->Children($page->children);
+      }
+    }
+    if($Page->children->count()){
+      $this->BreadCrumbs($Page->children);
     }
     return collect($this->breadcrumb);
   }
