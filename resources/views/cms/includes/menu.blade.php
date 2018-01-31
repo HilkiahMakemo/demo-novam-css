@@ -1,4 +1,4 @@
-<ul class="nav">
+<ul class="nav flex-column">
     <li{!! request()->is('admin/dashboard*')? ' class="active"': '' !!}>
         <a href="/admin/dashboard">
             <i class="material-icons">dashboard</i>

@@ -1,4 +1,4 @@
-<footer class="footer">
+
     <div class="container-fluid">
         <nav class="pull-left">
             <ul>
@@ -32,4 +32,3 @@
             <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
         </p>
     </div>
-</footer>

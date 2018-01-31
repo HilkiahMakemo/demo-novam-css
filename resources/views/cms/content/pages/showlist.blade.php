@@ -4,14 +4,23 @@
       <td colspan="10">
         @if ($Page)
           <span class="pull-left">
-            {{$Page->children->count() ?? 'No' }} page(s) created under '<strong>{{$Page->label ?? 'Root'}}</strong>' page
+            {{$Page->children->count() ?? 'No' }} page(s) here
           </span>
           <span class="pull-right">
-          Go <a href="?parent_id={{$Page->ancestor->id ?? -1}}">Back</a>
+            @foreach ($BreadCrumbs as $page)
+              @if ($loop->first)
+                {{ $page->label }}
+              @else
+                <a href="?parent_id={{$page->id}}">{{ $page->label }}</a>
+              @endif
+              <<
+            @endforeach
+            <a href="?parent_id=-1">Root</a>
+          {{-- Go <a href="?parent_id={{$Page->ancestor->id ?? -1}}">Back</a>
           @if ($Page->ancestor && $Page->ancestor->id != -1)
             << <a href="?parent_id=-1">Root</a>
           @endif
-          </span>
+          </span> --}}
         @else
           Top-most pages (created under root)
         @endif

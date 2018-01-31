@@ -30,7 +30,7 @@ class PageController extends Controller
         $data['Tree']  = $this->PageTree($data['Pages']);
         $data['IsDev'] = $IsDev = request()->has('dev');
         $data['PageTypes'] = $this->PageTypes('Site', $IsDev);
-
+        $data['BreadCrumbs'] = $this->BreadCrumbs($data['Page']);
         return view('cms.content.pages.index', $data);
     }
 
@@ -78,6 +78,7 @@ class PageController extends Controller
         }
         $data['Map'] = $Maps->find($id);
         $Pages = $data['Map']->pages;
+        $data['BreadCrumbs'] = $this->BreadCrumbs($data['Map']);
 
         if(!$Pages->count()){
           $Page = SitePage::create(['site_map_id' => $id]);
@@ -90,6 +91,7 @@ class PageController extends Controller
         }
         $data['Pages'] = $Maps;
         $data['PageTypes'] = $this->PageTypes('Site');
+
         return view('cms.content.pages.editor', $data);
     }
 

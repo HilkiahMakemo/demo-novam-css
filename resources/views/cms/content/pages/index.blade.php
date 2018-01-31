@@ -1,10 +1,10 @@
 @extends('cms.layouts.main')
 @section('content')
-<div class="row">
-  <div class="col-md-5 col-lg-4 col-sm-12 mx-auto">
-    <div class="card card-nav-tabs">
+<div class="w100">
+  <div class="card-deck">
+    <div class="card col-md-5 card-nav-tabs">
         <div class="card-header" data-background-color="purple">
-            <div class="nav-tabs-navigation">
+            <div class="nav-tabs-navigation">              
                 <div class="nav-tabs-wrapper text-center">
                     <span class="nav-tabs-title">Pages:</span>
                     <ul class="nav nav-tabs ml-auto" data-tabs="tabs">
@@ -30,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-content">
+        <div class="card-content shrink-hide">
             <div class="tab-content">
                 <div class="tab-pane active" id="page-list">
                     @include('cms.content.pages.showlist')
@@ -45,7 +45,7 @@
         </div>
     </div>
   </div>
-  <div class="col-md-7 col-lg-8 col-sm-12">
+  <div class="card col">
 
   </div>
 </div>

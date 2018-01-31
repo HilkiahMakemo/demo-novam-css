@@ -21,23 +21,18 @@
 
 <body>
   <div class="wrapper">
+    <aside class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+      @include('cms.includes.sidebar')
+    </aside>
     <main class="main-panel">
       @include('cms.includes.header')
       <section class="content">
         @yield('content')
       </section>
+      <footer class="footer">
       @include('cms.includes.footer')
+    </footer>
     </main>
-    <aside class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
-      <div class="logo">
-        <a href="/" class="simple-text">
-          {{config('app.name')}}
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        @include('cms.includes.menu')
-      </div>
-    </aside>
   </div>
   @stack('modals')
 

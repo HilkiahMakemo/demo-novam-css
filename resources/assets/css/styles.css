@@ -1,3 +1,22 @@
+.sidebar .nav i, .off-canvas-sidebar .nav i {
+    margin-right: 0;
+    width: 30px;
+    margin-left: 1rem;
+    line-height: 1.65;
+    font-size: 1.125rem;
+}
+.sidebar .nav p, .off-canvas-sidebar .nav p {
+  line-height: 2;
+  margin-left: 0;
+  display: inline-block;
+  font-size: 1rem;
+}
+.sidebar .nav li.active a,
+.off-canvas-sidebar .nav li.active a{
+  display: block;
+  line-height: 2;
+}
+
 .main-panel{
   min-height: 100vh;
 }
@@ -6,4 +25,35 @@ footer{
   left: 0;
   right: 0;
   bottom: 0;
+}
+.shrink, .expand{
+  float:left;
+}
+.shrink{
+  max-width: 485px;
+  width: 100%;
+}
+.shrink + .expand{
+  max-width: 100%;
+  margin-left: 15px;
+  width: calc(100% - 500px);
+}
+.shrink.shrinked{
+  max-width: 135px;
+}
+.shrink.shrinked + .expand{
+  width: calc(100% - 150px);
+  max-width: 100%;
+}
+.shrinked .shrink-hide{
+  display: none;
+}
+.card-header:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+.table .td-actions {
+    display: table-cell;
+    /* flex-flow: row-reverse; */
 }

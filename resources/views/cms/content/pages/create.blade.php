@@ -5,7 +5,6 @@
     <div class="form-group label-floating">
       <label class="control-label">Create Under:</label>
       @php
-      // dump($Page);
       $Label = $Map->ancestor->label ?? $Page->label ?? 'Top-most';
       // $selected = function($P, $key) use($Pages){
       //   return isset($Pages) && $P->$key == $Pages->$key? ' selected': '';

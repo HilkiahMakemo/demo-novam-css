@@ -11,6 +11,7 @@ trait SiteTree
 {
   protected $pagetypes = [];
   protected $sitetree  = [];
+  protected $breadcrumb = [];
   protected $namespace = 'App\\Http\\Controllers';
 
 
@@ -62,6 +63,16 @@ trait SiteTree
   public function PageBlocks()
   {
 
+  }
+
+  public function BreadCrumbs($Page)
+  {
+    if(empty($Page)) return;
+    $this->breadcrumb[] = $Page;
+    if($Page->ancestor){
+      $this->BreadCrumbs($Page->ancestor);
+    }
+    return collect($this->breadcrumb);
   }
 
   public function PageTree($Pages)

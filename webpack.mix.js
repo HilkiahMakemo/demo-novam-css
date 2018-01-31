@@ -18,8 +18,8 @@ mix.js(
   'resources/assets/sass/app.scss',
   'public/css'
 ).styles([
-  // 'resources/assets/css/bootstrap4.min.css',
-  'resources/themes/material/assets/css/bootstrap.min.css',
+  'resources/assets/css/bootstrap4.min.css',
+  // 'resources/themes/material/assets/css/bootstrap4.min.css',
   'resources/themes/material/assets/css/material-dashboard.css',
   'resources/themes/material/assets/css/demo.css',
   'resources/assets/css/styles.css'
