@@ -46,7 +46,7 @@
                       <i class="material-icons">edit</i>
                   </a>
                   <a href="{{$pg->url}}" rel="tooltip" title="View Page" class="btn btn-primary btn-simple btn-xs" target="_blank">
-                      <i class="material-icons">launch</i>
+                      <i class="material-icons">visibility</i>
                   </a>
                   <a href="#my-page-{{$pg->id}}" rel="tooltip" title="delete page" data-toggle="modal" class="btn btn-danger btn-simple btn-xs">
                       <i class="material-icons">close</i>

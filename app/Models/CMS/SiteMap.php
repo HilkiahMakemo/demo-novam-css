@@ -37,32 +37,41 @@ class SiteMap extends Model
 
     public function getUrlAttribute()
     {
-      $urls = [ trim($this->link,'/\\') ];
-      $GetURLs = function($ancestor) use($urls, &$GetURLs)
-      {
-        if(!$ancestor){
-          return array_reverse($urls);
-        } elseif ($ancestor->ancestor) {
-          $urls[] = $GetURLs($ancestor->ancestor);
-        } else {
-          $urls[] = trim($ancestor->link,'/\\') ?? '';
-        }
-        return array_reverse($urls);
-      };
-      $url = '';
-      $GetLink = function($urls) use($url, &$GetLink)
-      {
-        foreach ($urls as $_url) {
-          if(is_array($_url)){
-            $GetLink($_url);
+      $url = [];
+      $GetLink = function($page, $url) use(&$GetLink){
+          $url[] = $page->link;
+          if($page->ancestor){
+            $GetLink($page->ancestor, $url);
           }
-          else{
-            $url .= "/" . trim($_url, '/\\');
-          }
-        }
-        return $url;
+          return $url;
       };
-      return $GetLink( $GetURLs($this->ancestor) );
+      return  implode("/", $GetLink($this, $url));
+      // $urls = [ trim($this->link,'/\\') ];
+      // $GetURLs = function($ancestor) use($urls, &$GetURLs)
+      // {
+      //   if(!$ancestor){
+      //     return array_reverse($urls);
+      //   } elseif ($ancestor->ancestor) {
+      //     $urls[] = $GetURLs($ancestor->ancestor);
+      //   } else {
+      //     $urls[] = trim($ancestor->link,'/\\') ?: '';
+      //   }
+      //   return $urls;
+      // };
+      // $url = '';
+      // $GetLink = function($urls) use($url, &$GetLink)
+      // {
+      //   foreach ($urls as $_url) {
+      //     if(is_array($_url)){
+      //       $GetLink($_url);
+      //     }
+      //     else{
+      //       $url .= "/" . trim($_url, '/\\');
+      //     }
+      //   }
+      //   return $url;
+      // };
+      // return $GetLink( $GetURLs($this->ancestor) );
       // return "/".implode("/", $URL);
 
     }

@@ -72,18 +72,22 @@ trait SiteTree
     foreach ($BC as $page) {
       $Link .= "/".trim($page->link,'/\\');
     }
+    dump($Link);
     return $Link;
   }
 
   public function BreadCrumbs($Page)
   {
-    if(empty($Page)) return [];
-    $this->breadcrumb[] = $Page;
-    if($Page->ancestor){
+    $this->breadcrumb[] = $Page ?: [];
+
+    if($Page && $Page->ancestor){
       $this->BreadCrumbs($Page->ancestor);
     }
     $breadcrumb = collect($this->breadcrumb);
-    return $breadcrumb->reverse();
+
+    return $breadcrumb->filter(function($P){
+      return is_array($P) || $P instanceof SiteMap;
+    });
   }
 
   public function Children($Pages)

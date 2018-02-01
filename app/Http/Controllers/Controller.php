@@ -14,9 +14,14 @@ class Controller extends BaseController
 
     protected $allowed = [];
 
-    public function __invoke(Request $request, $action = null)
+    public function __invoke(Request $request)
     {
-      dump(request()->all());
+      $url_parts = explode("/", $request->path());
+      $method = array_shift($url_parts) ?: 'missing';
+
+      if(!method_exists($this, $method)) return abort(404);
+      
+      return $this->$method($request, $url_parts);
     }
 
     public function getAllowed()
@@ -27,6 +32,12 @@ class Controller extends BaseController
       $other_allowed = implode(", ", $this_allowed) ?: '';
 
       return $first_allowed.$other_allowed.$last_allowed;
+    }
+
+    public function missing(Request $request, $params = [])
+    {
+      $path = $request->url($request->path());
+      return abort(404, "'$path' is not a valid path");
     }
 
     public function getPage($url)

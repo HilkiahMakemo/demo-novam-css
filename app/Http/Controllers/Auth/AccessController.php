@@ -14,12 +14,12 @@ class AccessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, $action = null)
+    public function __invoke(Request $request)
     {
-        //
-        dump(request()->url(), request()->all());
+        $url_parts = implode("/", $request->path());
+        $action = array_shift($url_parts);
         if($action != null) $method = 'save'.ucfirst($action);
-        return $this->$method($request);
+        return $this->$method($request, $url_parts);
     }
 
     public function saveProfile(Request $request)

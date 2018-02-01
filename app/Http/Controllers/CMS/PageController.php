@@ -21,9 +21,9 @@ class PageController extends Controller
     {
         $Pages = SiteMap::all();
         $pid = request('parent_id') ?: -1;
-        $data['Page']  = $Pages->find($pid);
-        if($data['Page']){
-          $data['Pages'] = $data['Page']->children;
+        $data['Page']  = $Page = $Pages->find($pid);
+        if($Page){
+          $data['Pages'] = $Page->children;
         }
         else{
           $data['Pages'] = $Pages->where('parent_id', $pid);
@@ -35,7 +35,7 @@ class PageController extends Controller
         }
         $data['PageTypes'] = $this->PageTypes('Site', $IsDev);
 
-        $data['BreadCrumbs'] = $this->BreadCrumbs($data['Page']);
+        $data['BreadCrumbs'] = $this->BreadCrumbs($Page);
         return view('cms.content.pages.index', $data);
     }
 
@@ -81,9 +81,9 @@ class PageController extends Controller
         if($id == 'data') {
           return $Maps->where('parent_id', -1);
         }
-        $data['Map'] = $Maps->find($id);
+        $data['Map'] = $Map = $Maps->find($id);
         $Pages = $data['Map']->pages;
-        $data['BreadCrumbs'] = $this->BreadCrumbs($data['Map']);
+        $data['BreadCrumbs'] = $this->BreadCrumbs($Map);
 
         if(!$Pages->count()){
           $Page = SitePage::create(['site_map_id' => $id]);
@@ -94,7 +94,7 @@ class PageController extends Controller
             return empty($p) || $p->version == 'live' || $i == 0;
           });
         }
-        $data['Link']  = $this->Link($data['Page']);
+        // $data['Link']  = $this->Link($Map); dump($data['Link']);
         $data['Pages'] = $Maps;
         $data['PageTypes'] = $this->PageTypes('Site');
 
